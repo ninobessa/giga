@@ -1,0 +1,50 @@
+<% flash.each do |type, msg| %>
+  <div>
+    <p id="<%= type %>" class="my-3 rounded border border-danger p-3 mb-2 bg-danger text-white">
+      <%= msg %>
+    </p>
+  </div>
+<% end %>
+
+<div class="card shadow mt-4">
+  <div class="card-header py-3">
+    <div class="row">
+      <div class="col-8 fs-3 fw-bolder">
+        Users
+      </div>
+      <div class="col">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search user..." aria-label="Search user..." aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">Go!</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th colspan="2">Name</th>
+          <th>E-mail</th>
+          <th>Gender</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody data-controller="users">
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= image_tag user.picture, class: 'w-25' %></td>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.gender %></td>
+            <td><%= link_to 'Show', user_path(user) %></td>
+            <td><%= button_to "Destroy this user", user, method: :delete, data: { action: "click->users#delete" }, class: 'btn btn-danger' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
