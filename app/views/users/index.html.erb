@@ -36,7 +36,7 @@
       <tbody data-controller="users">
         <% @users.each do |user| %>
           <tr>
-            <td><%= image_tag user.picture, class: 'w-25' %></td>
+            <td><%= image_tag user.picture, class: 'w-25 img-thumbnail' %></td>
             <td><%= user.name %></td>
             <td><%= user.email %></td>
             <td><%= user.gender %></td>
