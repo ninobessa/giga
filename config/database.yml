@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch("DATABASE_HOST") { "localhost" } %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") { "password" } %>
+  user: <%= ENV.fetch("DATABASE_USER") { "postgres" } %>
+
+development:
+  <<: *default
+  database: giga_development
+
+test:
+  <<: *default
+  database: giga_test

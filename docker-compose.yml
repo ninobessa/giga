@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:latest
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      - TZ=America/Sao_Paulo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 5432:5432
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && ./bin/dev"
+    volumes:
+      - bundle_cache:/bundle
+      - .:/giga_app
+    ports:
+      - 3000:3000
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=password
+    depends_on:
+      - db
+volumes:
+  bundle_cache:
