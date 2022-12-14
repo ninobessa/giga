@@ -1,11 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  delete(event) {
-    let confirmed = confirm("Você tem certeza?")
+  static targets = ["form"]
 
-    if(!confirmed) {
-      event.preventDefault()
-    }
+  submit(event) {
+    this.formTarget.requestSubmit()
   }
 }

@@ -1,50 +1,38 @@
-<% flash.each do |type, msg| %>
-  <div>
-    <p id="<%= type %>" class="my-3 rounded border border-danger p-3 mb-2 bg-danger text-white">
-      <%= msg %>
-    </p>
-  </div>
-<% end %>
 
-<div class="card shadow mt-4 mb-4">
+
+<div class="card shadow mt-4 mb-4" data-controller="users">
   <div class="card-header py-3">
     <div class="row">
       <div class="col-8 fs-3 fw-bolder">
         Users
       </div>
       <div class="col">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Search user..." aria-label="Search user..." aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="button">Go!</button>
-          </div>
+        <div class="d-flex flex-row-reverse">
+          <%= form_with url: "/", method: :get, data: { controller: "users", target: "users.form", turbo_frame: "table" } do |f| %>
+            <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search user by name...", data: { action: "users#submit" } %>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-  <div class="card-body">
-    <table class="table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Name</th>
-          <th>E-mail</th>
-          <th>Gender</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody data-controller="users">
-        <% @users.each do |user| %>
+  <%= turbo_frame_tag "table" do %>
+    <%= render "shared/flash_messages" %>
+    <div class="card-body">
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= image_tag user.picture, class: 'w-25 img-thumbnail' %></td>
-            <td><%= user.name %></td>
-            <td><%= user.email %></td>
-            <td><%= user.gender %></td>
-            <td><%= button_to "Destroy", user, method: :delete, data: { action: "click->users#delete" }, class: 'btn btn-danger' %></td>
+            <th></th>
+            <th>Name</th>
+            <th>E-mail</th>
+            <th>Gender</th>
+            <th></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%== pagy_bootstrap_nav(@pagy) %>
-  </div>
+        </thead>
+        <tbody class="align-middle">
+          <%= render @users %>
+        </tbody>
+      </table>
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+  <% end %>
 </div>

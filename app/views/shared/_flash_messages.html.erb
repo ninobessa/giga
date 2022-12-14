@@ -1,0 +1,7 @@
+<% flash.each do |type, msg| %>
+  <div>
+    <p id="<%= type %>" class="my-3 border border-success p-2 mb-2 bg-success text-white">
+      <%= msg %>
+    </p>
+  </div>
+<% end %>

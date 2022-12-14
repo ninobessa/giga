@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ destroy ]
 
   def index
-    @pagy, @users = pagy(User.all.order(name: :asc), items: 10)
+    @users = User.search_by(params[:query])
+    @pagy, @users = pagy(@users, items: 10)
   end
 
   def destroy
