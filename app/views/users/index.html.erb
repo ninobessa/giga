@@ -4,12 +4,12 @@
   <div class="card-header py-3">
     <div class="row">
       <div class="col-8 fs-3 fw-bolder">
-        Users
+        <%= t("activerecord.models.user.other") %>
       </div>
       <div class="col">
         <div class="d-flex flex-row-reverse">
           <%= form_with url: "/", method: :get, data: { controller: "users", target: "users.form", turbo_frame: "table" } do |f| %>
-            <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search user by name...", data: { action: "users#submit" } %>
+            <%= text_field_tag :query, params[:query], class: "form-control", placeholder: t("view_components.search_by_user_name"), data: { action: "users#submit" } %>
           <% end %>
         </div>
       </div>
@@ -22,9 +22,9 @@
         <thead>
           <tr>
             <th></th>
-            <th>Name</th>
-            <th>E-mail</th>
-            <th>Gender</th>
+            <th><%= t("activerecord.attributes.user.name") %></th>
+            <th><%= t("activerecord.attributes.user.email") %></th>
+            <th><%= t("activerecord.attributes.user.gender") %></th>
             <th></th>
           </tr>
         </thead>

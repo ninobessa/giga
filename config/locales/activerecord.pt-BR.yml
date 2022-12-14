@@ -1,0 +1,16 @@
+pt-BR:
+ activerecord:
+    models:
+      user:
+        one: 'Usuário'
+        other: 'Usuários'
+    attributes:
+      user:
+        name: 'Nome'
+        email: 'E-mail'
+        gender: 'Sexo'
+      gender:
+        female: 'Feminino'
+        male: 'Masculino'
+    errors:
+      email_must_be_valid: "deve conter um e-mail válido"

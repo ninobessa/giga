@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_url, notice: "User was successfully destroyed."
+    redirect_to users_url, notice: I18n.t('flash.actions.destroy.notice', model: 'Usuário')
   end
 
   private

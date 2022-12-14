@@ -2,7 +2,6 @@
   <td><%= image_tag user.picture, class: 'w-25 img-thumbnail' %></td>
   <td><%= user.name %></td>
   <td><%= user.email %></td>
-  <td><%= user.gender %></td>
-  <td><%= link_to "Destroy", user, data: { turbo_confirm: "Você tem certeza?", turbo_method: :delete }, class: 'btn btn-danger' %></td>
+  <td><%= t("activerecord.attributes.gender.#{user.gender}") %></td>
+  <td><%= link_to t("view_components.destroy"), user, data: { turbo_confirm: t("view_components.are_you_sure"), turbo_method: :delete }, class: 'btn btn-danger' %></td>
 </tr>
-

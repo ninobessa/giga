@@ -1,0 +1,5 @@
+pt-BR:
+ view_components:
+    destroy: 'Excluir'
+    search_by_user_name: 'Buscar pelo nome do usuário...'
+    are_you_sure: 'Tem certeza?'
