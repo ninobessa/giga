@@ -39,6 +39,7 @@ group :development do
 end
 
 group :test do
+  gem 'shoulda-matchers', '5.2.0'
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
